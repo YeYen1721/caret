@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Caret</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<div class="page">
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="btn mute"></div>
+      <div class="btn vol-up"></div>
+      <div class="btn vol-down"></div>
+      <div class="btn power"></div>
+
+      <div class="screen-bezel">
+        <div class="dynamic-island"></div>
+
+        <!-- ═══════════════════ SPLASH SCREEN ═══════════════ -->
+        <div class="splash-screen" id="splashScreen">
+          <img src="assets/Caret.png" class="splash-icon" alt="Caret"/>
+        </div>
+
+        <!-- ═══════════════════ HOME VIEW ═══════════════════ -->
+        <div class="view active" id="homeView">
+
+          <!-- Top Bar -->
+          <div class="topbar" id="topbar">
+            <!-- Combined currency pill — clicks open Market -->
+            <button class="currency-pill" id="currencyRow">
+              <div class="pill-item">
+                <img src="assets/coincurrency.png" class="pill-icon" alt=""/>
+                <span id="coinBal">1,050</span>
+              </div>
+              <div class="pill-divider"></div>
+              <div class="pill-item">
+                <img src="assets/carrorcurrency.png" class="pill-icon" alt=""/>
+                <span id="carrotBal">500</span>
+              </div>
+            </button>
+            <div class="topbar-icons">
+              <button class="icon-btn" id="bellBtn" aria-label="Notifications">
+                <img src="assets/notification.svg" class="notif-icon-img" alt=""/>
+                <span class="notif-badge" id="notifBadge">3</span>
+              </button>
+              <button class="avatar-icon-btn" id="profileBtn" aria-label="Profile">
+                <img src="assets/Mephoto.png" class="topbar-avatar" alt="Me"/>
+              </button>
+            </div>
+          </div>
+
+          <!-- Notification panel -->
+          <div class="notif-backdrop hidden" id="notifBackdrop"></div>
+          <div class="notif-panel hidden" id="notifPanel">
+            <div class="notif-panel-title">Notifications</div>
+            <div id="notifList">
+              <!-- Row: Jennie / coin -->
+              <div class="notif-row">
+                <div class="notif-avatar-wrap">
+                  <div class="notif-avatar"><img src="assets/jenniephoto.png" alt="Jennie"/></div>
+                  <div class="notif-icon-badge"><img src="assets/coin.png" alt="coin"/></div>
+                </div>
+                <div class="notif-text">
+                  <div class="notif-sender">Jennie</div>
+                  <div class="notif-msg">Sent you 1,000 coins!</div>
+                </div>
+                <div class="notif-time">now</div>
+              </div>
+              <!-- Row: Lee / message -->
+              <div class="notif-row">
+                <div class="notif-avatar-wrap">
+                  <div class="notif-avatar"><img src="assets/Leephoto.png" alt="Lee"/></div>
+                  <div class="notif-icon-badge"><img src="assets/mail.png" alt="mail"/></div>
+                </div>
+                <div class="notif-text">
+                  <div class="notif-sender">Lee</div>
+                  <div class="notif-msg">Sent you a message!</div>
+                </div>
+                <div class="notif-time">15m ago</div>
+              </div>
+              <!-- Row: Blake / help -->
+              <div class="notif-row">
+                <div class="notif-avatar-wrap">
+                  <div class="notif-avatar"><img src="assets/Blakephoto.png" alt="Blake"/></div>
+                  <div class="notif-icon-badge"><img src="assets/help.png" alt="help"/></div>
+                </div>
+                <div class="notif-text">
+                  <div class="notif-sender">Blake</div>
+                  <div class="notif-msg">Offered to help!</div>
+                </div>
+                <div class="notif-time">1d ago</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content (grid vs carousel) -->
+          <div class="content-area">
+            <div class="section-header" id="sectionHeader">
+              <span class="section-title" id="sectionTitle">Our Team</span>
+              <button class="back-btn hidden" id="backBtn">
+                <img src="assets/backbutton.png" style="width:9px;height:18px;" alt="back"/>
+              </button>
+            </div>
+
+            <!-- ── Grid ── -->
+            <div class="card-grid" id="cardGrid">
+              <!-- Me — healthy -->
+              <button class="member-card healthy" data-index="0">
+                <div class="card-bg" style="background-image:url('assets/backgroundhealthy.png')"></div>
+                <div class="card-name-pill">Me</div>
+                <img class="card-sticker" src="assets/healthybunny.png" alt=""/>
+                <div class="card-avatar"><img src="assets/Mephoto.png" alt="Me"/></div>
+              </button>
+              <!-- Jennie — wilting -->
+              <button class="member-card wilting" data-index="1">
+                <div class="card-bg" style="background-image:url('assets/backgroundsick.png')"></div>
+                <div class="card-name-pill">Jennie</div>
+                <img class="card-sticker" src="assets/sickbunny.png" alt=""/>
+                <div class="card-avatar"><img src="assets/jenniephoto.png" alt="Jennie"/></div>
+              </button>
+              <!-- Min — wilting -->
+              <button class="member-card wilting" data-index="2">
+                <div class="card-bg" style="background-image:url('assets/backgroundsick.png')"></div>
+                <div class="card-name-pill">Min</div>
+                <img class="card-sticker" src="assets/sickbunny.png" alt=""/>
+                <div class="card-avatar"><img src="assets/Minphoto.png" alt="Min"/></div>
+              </button>
+              <!-- Sumant — healthy -->
+              <button class="member-card healthy" data-index="3">
+                <div class="card-bg" style="background-image:url('assets/backgroundhealthy.png')"></div>
+                <div class="card-name-pill">Sumant</div>
+                <img class="card-sticker" src="assets/healthybunny.png" alt=""/>
+                <div class="card-avatar"><img src="assets/sumantphoto.png" alt="Sumant"/></div>
+              </button>
+              <!-- Blake — healthy -->
+              <button class="member-card healthy" data-index="4">
+                <div class="card-bg" style="background-image:url('assets/backgroundhealthy.png')"></div>
+                <div class="card-name-pill">Blake</div>
+                <img class="card-sticker" src="assets/healthybunny.png" alt=""/>
+                <div class="card-avatar"><img src="assets/Blakephoto.png" alt="Blake"/></div>
+              </button>
+              <!-- Lee — healthy -->
+              <button class="member-card healthy" data-index="5">
+                <div class="card-bg" style="background-image:url('assets/backgroundhealthy.png')"></div>
+                <div class="card-name-pill">Lee</div>
+                <img class="card-sticker" src="assets/healthybunny.png" alt=""/>
+                <div class="card-avatar"><img src="assets/Leephoto.png" alt="Lee"/></div>
+              </button>
+            </div>
+
+            <!-- ── Peek carousel ── -->
+            <div class="carousel hidden" id="carousel">
+              <div class="carousel-track" id="carouselTrack">
+                <!-- Me -->
+                <div class="carousel-card healthy" id="cc0">
+                  <div class="card-bg" style="background-image:url('assets/backgroundhealthy.png')"></div>
+                  <div class="card-name-pill">Me</div>
+                  <div class="card-status">No problem so far!<br/>Everything is organized</div>
+                  <img class="carousel-sticker" src="assets/healthybunny.png" alt=""/>
+                  <div class="hashtag htag-l">#Happy</div>
+                  <div class="hashtag htag-r">#Hehe</div>
+                  <div class="carousel-avatar"><img src="assets/Mephoto.png" alt=""/></div>
+                </div>
+                <!-- Jennie -->
+                <div class="carousel-card wilting" id="cc1">
+                  <div class="card-bg" style="background-image:url('assets/backgroundsick.png')"></div>
+                  <div class="card-name-pill">Jennie</div>
+                  <div class="card-status">Meeting after meeting<br/>after meeting..!</div>
+                  <img class="carousel-sticker" src="assets/sickbunny.png" alt=""/>
+                  <div class="hashtag htag-l">#Tired</div>
+                  <div class="hashtag htag-r">#Stressed</div>
+                  <div class="carousel-avatar"><img src="assets/jenniephoto.png" alt=""/></div>
+                </div>
+                <!-- Min -->
+                <div class="carousel-card wilting" id="cc2">
+                  <div class="card-bg" style="background-image:url('assets/backgroundsick.png')"></div>
+                  <div class="card-name-pill">Min</div>
+                  <div class="card-status">Meeting after meeting<br/>after meeting..!</div>
+                  <img class="carousel-sticker" src="assets/sickbunny.png" alt=""/>
+                  <div class="hashtag htag-l">#Tired</div>
+                  <div class="hashtag htag-r">#Stressed</div>
+                  <div class="carousel-avatar"><img src="assets/Minphoto.png" alt=""/></div>
+                </div>
+                <!-- Sumant -->
+                <div class="carousel-card healthy" id="cc3">
+                  <div class="card-bg" style="background-image:url('assets/backgroundhealthy.png')"></div>
+                  <div class="card-name-pill">Sumant</div>
+                  <div class="card-status">No problem so far!<br/>Everything is organized</div>
+                  <img class="carousel-sticker" src="assets/healthybunny.png" alt=""/>
+                  <div class="hashtag htag-l">#Happy</div>
+                  <div class="hashtag htag-r">#Hehe</div>
+                  <div class="carousel-avatar"><img src="assets/sumantphoto.png" alt=""/></div>
+                </div>
+                <!-- Blake -->
+                <div class="carousel-card healthy" id="cc4">
+                  <div class="card-bg" style="background-image:url('assets/backgroundhealthy.png')"></div>
+                  <div class="card-name-pill">Blake</div>
+                  <div class="card-status">No problem so far!<br/>Everything is organized</div>
+                  <img class="carousel-sticker" src="assets/healthybunny.png" alt=""/>
+                  <div class="hashtag htag-l">#Happy</div>
+                  <div class="hashtag htag-r">#Hehe</div>
+                  <div class="carousel-avatar"><img src="assets/Blakephoto.png" alt="Blake"/></div>
+                </div>
+                <!-- Lee -->
+                <div class="carousel-card healthy" id="cc5">
+                  <div class="card-bg" style="background-image:url('assets/backgroundhealthy.png')"></div>
+                  <div class="card-name-pill">Lee</div>
+                  <div class="card-status">No problem so far!<br/>Everything is organized</div>
+                  <img class="carousel-sticker" src="assets/healthybunny.png" alt=""/>
+                  <div class="hashtag htag-l">#Happy</div>
+                  <div class="hashtag htag-r">#Hehe</div>
+                  <div class="carousel-avatar"><img src="assets/Leephoto.png" alt=""/></div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /content-area -->
+
+          <!-- Bottom area -->
+          <div class="bottom-area">
+            <div class="grass-zone" id="grassZone">
+              <img src="assets/grass.png" class="grass-img" alt=""/>
+            </div>
+            <div class="send-bar hidden" id="sendBar">
+              <button class="send-btn" id="sendBtn">Send</button>
+            </div>
+          </div>
+
+        </div><!-- /homeView -->
+
+        <!-- ═════════════ CARE OVERLAY ═════════════ -->
+        <div class="view care-overlay hidden" id="careOverlay" style="opacity:0">
+          <div class="care-inner">
+            <div class="care-title-wrap">
+              <div class="care-title-line1">Send your carings to</div>
+              <div class="care-title-line2" id="careTargetName"></div>
+            </div>
+
+            <!-- 2×2 sticker grid -->
+            <div class="sticker-grid">
+              <div class="sticker-row">
+                <!-- Message: -12°, label below-left -->
+                <button class="sticker-btn" data-type="mail">
+                  <div class="sticker-wrap" style="--rot:-12deg">
+                    <img src="assets/mail.png" class="sticker-img" alt="Message"/>
+                    <span class="sticker-label" style="--lx:-18px;--ly:52px">Message</span>
+                  </div>
+                </button>
+                <!-- Coffee: 10°, label above -->
+                <button class="sticker-btn" data-type="coffee">
+                  <div class="sticker-wrap" style="--rot:10deg">
+                    <img src="assets/coffee.png" class="sticker-img" alt="Coffee"/>
+                    <span class="sticker-label" style="--lx:-10px;--ly:-54px">Coffee</span>
+                  </div>
+                </button>
+              </div>
+              <div class="sticker-row">
+                <!-- Carrot/Coin: -8°, label below -->
+                <button class="sticker-btn" data-type="coin">
+                  <div class="sticker-wrap" style="--rot:-8deg">
+                    <img src="assets/carrot.png" class="sticker-img" alt="Carrot"/>
+                    <span class="sticker-label" style="--lx:-20px;--ly:52px">Carrot</span>
+                  </div>
+                </button>
+                <!-- Help: 12°, label below-right -->
+                <button class="sticker-btn" data-type="help">
+                  <div class="sticker-wrap" style="--rot:12deg">
+                    <img src="assets/help.png" class="sticker-img" alt="Help"/>
+                    <span class="sticker-label" style="--lx:22px;--ly:52px">Help</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <button class="care-send-btn disabled" id="careSendBtn">Send</button>
+          </div>
+        </div>
+
+        <!-- ═════════════ PROFILE VIEW ═════════════ -->
+        <div class="view slide-view hidden" id="profileView">
+          <div class="slide-inner">
+
+            <!-- Sticky header -->
+            <div class="slide-header">
+              <button class="back-slide-btn" id="profileBack">
+                <img src="assets/backbutton.png" style="width:9px;height:18px;" alt="back"/>
+              </button>
+              <span class="slide-title">Profile</span>
+            </div>
+
+            <!-- Scrollable content -->
+            <div class="profile-scroll">
+
+            <!-- Photo + name + state label -->
+            <div class="profile-hero">
+              <div class="profile-avatar-lg">
+                <img src="assets/Mephoto.png" class="profile-photo" alt="Me"/>
+              </div>
+              <div class="profile-name">Me</div>
+              <div class="profile-state-lbl">Doing great</div>
+            </div>
+
+            <!-- Balance cards -->
+            <div class="profile-balance-row">
+              <div class="balance-card">
+                <img src="assets/carrorcurrency.png" class="balance-icon" alt=""/>
+                <div class="balance-info">
+                  <div class="balance-amount" id="pCarrot">500</div>
+                  <div class="balance-lbl">Carrots</div>
+                </div>
+              </div>
+              <div class="balance-card">
+                <img src="assets/coincurrency.png" class="balance-icon" alt=""/>
+                <div class="balance-info">
+                  <div class="balance-amount" id="pCoin">1,050</div>
+                  <div class="balance-lbl">Coins</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- My Carrot section -->
+            <div class="my-carrot-card">
+              <div class="my-carrot-header">
+                <span class="profile-section-title">My Carrot</span>
+                <span class="my-carrot-state-lbl">Doing great</span>
+              </div>
+              <div class="my-carrot-bunny">
+                <img src="assets/healthybunny.png" class="profile-bunny-img" alt="Bunny"/>
+              </div>
+            </div>
+
+            <!-- Care Received section -->
+            <div class="care-received-section">
+              <div class="profile-section-title">Care Received</div>
+
+              <!-- Jennie / coin -->
+              <div class="care-row">
+                <div class="care-row-avatar-wrap">
+                  <div class="care-row-avatar"><img src="assets/jenniephoto.png" alt="Jennie"/></div>
+                  <div class="care-row-badge"><img src="assets/coin.png" alt=""/></div>
+                </div>
+                <div class="care-row-text">
+                  <div class="care-row-sender">Jennie</div>
+                  <div class="care-row-msg">Sent you 1,000 coins!</div>
+                </div>
+                <div class="care-row-time">now</div>
+              </div>
+
+              <!-- Lee / message -->
+              <div class="care-row">
+                <div class="care-row-avatar-wrap">
+                  <div class="care-row-avatar"><img src="assets/Leephoto.png" alt="Lee"/></div>
+                  <div class="care-row-badge"><img src="assets/mail.png" alt=""/></div>
+                </div>
+                <div class="care-row-text">
+                  <div class="care-row-sender">Lee</div>
+                  <div class="care-row-msg">Sent you a message!</div>
+                </div>
+                <div class="care-row-time">15m ago</div>
+              </div>
+
+              <!-- Blake / help (no photo) -->
+              <div class="care-row">
+                <div class="care-row-avatar-wrap">
+                  <div class="care-row-avatar care-row-avatar-placeholder">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="8" r="5" fill="white"/>
+                      <path d="M4 20c0-4 3.58-7 8-7s8 3 8 7" fill="white"/>
+                    </svg>
+                  </div>
+                  <div class="care-row-badge"><img src="assets/help.png" alt=""/></div>
+                </div>
+                <div class="care-row-text">
+                  <div class="care-row-sender">Blake</div>
+                  <div class="care-row-msg">Offered to help!</div>
+                </div>
+                <div class="care-row-time">1d ago</div>
+              </div>
+
+            </div><!-- /care-received-section -->
+
+            <div style="height:60px"></div>
+            </div><!-- /profile-scroll -->
+          </div><!-- /slide-inner -->
+        </div>
+
+        <!-- ═════════════ MARKET VIEW ═════════════ -->
+        <div class="view slide-view hidden" id="marketView">
+          <div class="slide-inner">
+
+            <!-- Sticky header -->
+            <div class="slide-header">
+              <button class="back-slide-btn" id="marketBack">
+                <img src="assets/backbutton.png" style="width:9px;height:18px;" alt="back"/>
+              </button>
+              <span class="slide-title">Market</span>
+            </div>
+
+            <!-- Scrollable content -->
+            <div class="market-scroll">
+            <div class="market-banner-wrap">
+              <div class="market-banner-track" id="bannerTrack">
+                <div class="banner-slide"><img src="assets/dyson.png" alt="Dyson"/></div>
+                <div class="banner-slide"><img src="assets/laptop.png" alt="Laptop"/></div>
+                <div class="banner-slide"><img src="assets/makeup.png" alt="Makeup"/></div>
+                <div class="banner-slide"><img src="assets/phone.png" alt="Phone 2"/></div>
+                <div class="banner-slide"><img src="assets/phone.png" alt="Phone"/></div>
+                <div class="banner-slide"><img src="assets/bag.png" alt="Bag"/></div>
+              </div>
+              <div class="banner-dots" id="bannerDots">
+                <div class="banner-dot active"></div>
+                <div class="banner-dot"></div>
+                <div class="banner-dot"></div>
+                <div class="banner-dot"></div>
+                <div class="banner-dot"></div>
+                <div class="banner-dot"></div>
+              </div>
+            </div>
+            <div class="market-section-title">Popular</div>
+            <div class="market-row">
+              <div class="market-card">
+                <div class="market-card-img">
+                  <img src="assets/appleairpodsmax.png" alt="AirPods Max"/>
+                  <div class="market-card-price">40,000</div>
+                </div>
+                <div class="market-card-name">Apple AirPods Max</div>
+              </div>
+              <div class="market-card">
+                <div class="market-card-img">
+                  <img src="assets/adayoff.png" alt="Day Off"/>
+                  <div class="market-card-price">10,000</div>
+                </div>
+                <div class="market-card-name">A day-off</div>
+              </div>
+            </div>
+            <div class="market-section-title">Gift Cards</div>
+            <div class="market-carousel" id="giftCarousel">
+              <div class="market-card">
+                <div class="market-card-img">
+                  <img src="assets/amazongiftcard.png" alt="Amazon"/>
+                  <div class="market-card-price">5,000</div>
+                </div>
+                <div class="market-card-name">Amazon Gift Card</div>
+              </div>
+              <div class="market-card">
+                <div class="market-card-img">
+                  <img src="assets/applegiftcard.png" alt="Apple"/>
+                  <div class="market-card-price">5,000</div>
+                </div>
+                <div class="market-card-name">Apple Gift Card</div>
+              </div>
+              <div class="market-card">
+                <div class="market-card-img">
+                  <img src="assets/starbucksgiftcard.png" alt="Starbucks"/>
+                  <div class="market-card-price">1,000</div>
+                </div>
+                <div class="market-card-name">Starbucks</div>
+              </div>
+            </div>
+            <div style="height:160px"></div>
+            </div><!-- /market-scroll -->
+          </div><!-- /slide-inner -->
+        </div>
+
+        <div class="home-indicator"></div>
+      </div><!-- /screen-bezel -->
+    </div><!-- /phone -->
+  </div>
+</div>
+
+<!-- Custom cursor element (desktop only) -->
+<div class="custom-cursor" id="customCursor">🥕</div>
+
+<script src="app.js"></script>
+</body>
+</html>
